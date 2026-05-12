@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Leonardo Ribeiro</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+:root {
+    --bg:       #0d1117;
+    --surface:  #161b22;
+    --surface2: #1c2128;
+    --border:   #30363d;
+    --text:     #c9d1d9;
+    --muted:    #8b949e;
+    --green:    #3fb950;
+    --red:      #f85149;
+    --blue:     #58a6ff;
+    --yellow:   #e3b341;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 0;
+}
+.header-name {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+header h1 { font-size: 22px; font-weight: 600; }
+.header-sub { margin-top: 6px; font-size: 12px; color: var(--muted); }
+
+/* Sections */
+.section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+.section h2 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.section-note { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+
+/* Highlights */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 10px;
+}
+.stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+}
+.stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 6px;
+}
+.stat-value {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+}
+.stat-value small { font-size: 13px; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.neu { color: var(--text); }
+
+/* Charts */
+.chart-wrap { position: relative; height: 320px; margin-top: 20px; }
+.chart-wrap--alloc { position: relative; height: 300px; margin-top: 20px; }
+
+/* Tables */
+.data-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+.data-table th {
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+}
+.data-table th.r, .data-table td.r { text-align: right; }
+.data-table td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+}
+.data-table tbody tr:hover { background: var(--surface2); }
+.data-table tr.subtotal td {
+    background: var(--surface);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
+}
+.mono { font-family: 'SFMono-Regular', 'Consolas', monospace; font-size: 12px; }
+
+/* Architecture */
+.arch-list { margin-top: 14px; padding-left: 20px; color: var(--muted); font-size: 13px; }
+.arch-list li { margin-bottom: 8px; }
+
+/* Footer */
+footer { padding: 28px 0; text-align: center; font-size: 12px; color: var(--muted); }
+
+@media (max-width: 768px) { .highlights-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .highlights-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <p class="header-name">Leonardo Ribeiro</p>
+    <h1>Portfolio Dashboard</h1>
+    <p class="header-sub">
+      Last updated: 2026-05-12
+      &nbsp;&middot;&nbsp;
+      Prices updated daily at market close
+    </p>
+  </div>
+</header>
+
+<section id="highlights" class="section">
+  <div class="container">
+    <div class="highlights-grid">
+      <div class="stat">
+        <div class="stat-label">Total Return</div>
+        <div class="stat-value pos">+69.1%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Best Open Position</div>
+        <div class="stat-value pos">
+          VRT <small>+103.2%</small>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Worst Open Position</div>
+        <div class="stat-value pos">
+          SILJ <small>+0.9%</small>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">YTD vs SPY</div>
+        <div class="stat-value"><span class="pos">+20.5%</span><span style="color:var(--muted)"> / SPY </span><span class="pos">+7.0%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hero-chart" class="section">
+  <div class="container">
+    <h2>Portfolio Value Index</h2>
+    <p class="section-note">
+      Indexed to 100 at first price date &middot; first investment 2025-04-14
+    </p>
+    <div class="chart-wrap">
+      <canvas id="heroChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<section id="allocation" class="section">
+  <div class="container">
+    <h2>Allocation by Thesis</h2>
+    <p class="section-note">Percentage of total cost basis</p>
+    <div class="chart-wrap--alloc">
+      <canvas id="allocChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<section id="open-positions" class="section">
+  <div class="container">
+    <h2>Open Positions</h2>
+    <p class="section-note">Entry = 100 by definition &middot; Current = (price / avg cost) &times; 100</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Ticker</th><th>Theme</th>
+          <th class="r">Shares</th>
+          <th class="r">Entry</th>
+          <th class="r">Current</th>
+          <th class="r">Unreal %</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr><td class="mono">COPX</td><td>Commodities</td><td class="r">3.7381</td><td class="r">100.0</td><td class="r">109.0</td><td class="r pos">+9.0%</td></tr>
+<tr class="subtotal"><td colspan="2">Commodities</td><td class="r">3.7381</td><td class="r">—</td><td class="r">109.0</td><td class="r pos">+9.0%</td></tr>
+<tr><td class="mono">VRT</td><td>Data-Center</td><td class="r">1.7200</td><td class="r">100.0</td><td class="r">203.2</td><td class="r pos">+103.2%</td></tr>
+<tr class="subtotal"><td colspan="2">Data-Center</td><td class="r">1.7200</td><td class="r">—</td><td class="r">203.2</td><td class="r pos">+103.2%</td></tr>
+<tr><td class="mono">ITA</td><td>Defense</td><td class="r">5.4353</td><td class="r">100.0</td><td class="r">126.3</td><td class="r pos">+26.3%</td></tr>
+<tr class="subtotal"><td colspan="2">Defense</td><td class="r">5.4353</td><td class="r">—</td><td class="r">126.3</td><td class="r pos">+26.3%</td></tr>
+<tr><td class="mono">BTAL11</td><td>EM</td><td class="r">17.0000</td><td class="r">100.0</td><td class="r">144.3</td><td class="r pos">+44.3%</td></tr>
+<tr><td class="mono">ARGT</td><td>EM</td><td class="r">2.8247</td><td class="r">100.0</td><td class="r">103.6</td><td class="r pos">+3.6%</td></tr>
+<tr><td class="mono">RBRP11</td><td>EM</td><td class="r">29.0000</td><td class="r">100.0</td><td class="r">136.1</td><td class="r pos">+36.1%</td></tr>
+<tr class="subtotal"><td colspan="2">EM</td><td class="r">48.8247</td><td class="r">—</td><td class="r">127.1</td><td class="r pos">+27.1%</td></tr>
+<tr><td class="mono">XLE</td><td>Energy</td><td class="r">8.8020</td><td class="r">100.0</td><td class="r">103.7</td><td class="r pos">+3.7%</td></tr>
+<tr class="subtotal"><td colspan="2">Energy</td><td class="r">8.8020</td><td class="r">—</td><td class="r">103.7</td><td class="r pos">+3.7%</td></tr>
+<tr><td class="mono">UGL</td><td>Precious Metals</td><td class="r">9.9132</td><td class="r">100.0</td><td class="r">132.1</td><td class="r pos">+32.1%</td></tr>
+<tr><td class="mono">SILJ</td><td>Precious Metals</td><td class="r">9.1780</td><td class="r">100.0</td><td class="r">100.9</td><td class="r pos">+0.9%</td></tr>
+<tr class="subtotal"><td colspan="2">Precious Metals</td><td class="r">19.0912</td><td class="r">—</td><td class="r">119.7</td><td class="r pos">+19.7%</td></tr>
+<tr><td class="mono">SMH</td><td>Semiconductors</td><td class="r">0.5290</td><td class="r">100.0</td><td class="r">146.2</td><td class="r pos">+46.2%</td></tr>
+<tr class="subtotal"><td colspan="2">Semiconductors</td><td class="r">0.5290</td><td class="r">—</td><td class="r">146.2</td><td class="r pos">+46.2%</td></tr>
+<tr><td class="mono">URA</td><td>Uranium</td><td class="r">23.7829</td><td class="r">100.0</td><td class="r">126.5</td><td class="r pos">+26.5%</td></tr>
+<tr class="subtotal"><td colspan="2">Uranium</td><td class="r">23.7829</td><td class="r">—</td><td class="r">126.5</td><td class="r pos">+26.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="closed-positions" class="section">
+  <div class="container">
+    <h2>Closed Positions</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th class="r">Realized %</th>
+          <th class="r">Hold Days</th>
+          <th>Term</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr><td class="mono">AGQ</td><td class="r pos">+256.8%</td><td class="r">93–273d</td><td>SHORT</td></tr>
+<tr><td class="mono">PETR4</td><td class="r pos">+10.9%</td><td class="r">152–229d</td><td>SHORT</td></tr>
+<tr><td class="mono">DAX</td><td class="r pos">+14.2%</td><td class="r">163d</td><td>SHORT</td></tr>
+<tr><td class="mono">YCL</td><td class="r neg">-4.1%</td><td class="r">82d</td><td>SHORT</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="architecture" class="section">
+  <div class="container">
+    <h2>How It Works</h2>
+    <ul class="arch-list">
+      <li>Multi-broker ingestion (DriveWealth, Inter&nbsp;US/Apex, Inter&nbsp;Brasil, Fidelity) via PDF and CSV parsers</li>
+      <li>ACATS transfer cost basis continuity across accounts (Inter&nbsp;US &rarr; DriveWealth)</li>
+      <li>FIFO lot reconstruction with corporate action handling</li>
+      <li>BRL/USD FX conversion at trade-date via BCB PTAX API</li>
+    </ul>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <p>Built with Python, SQLite, Chart.js &nbsp;&middot;&nbsp; <a href="#">GitHub</a></p>
+  </div>
+</footer>
+
+<script>
+const PORTFOLIO_LABELS = ["2025-04-30", "2025-05-30", "2025-06-30", "2025-07-31", "2025-08-29", "2025-09-30", "2025-10-31", "2025-11-28", "2025-12-31", "2026-01-30", "2026-02-27", "2026-03-31", "2026-04-30", "2026-05-12"];
+const COST_INDEX       = [100.0, 110.36, 110.36, 201.35, 201.35, 204.2, 236.18, 256.38, 239.36, 272.98, 272.98, 272.98, 318.43, 318.43];
+const VALUE_INDEX      = [100.74, 117.38, 126.02, 232.24, 241.08, 262.34, 311.29, 343.65, 314.27, 396.07, 426.19, 362.64, 428.32, 378.62];
+const ALLOC_LABELS     = ["Uranium", "Defense", "Precious Metals", "EM", "Energy", "Commodities", "Data-Center", "Semiconductors"];
+const ALLOC_PCTS       = [21.5, 20.5, 16.1, 14.5, 10.4, 6.4, 6.4, 4.3];
+const ALLOC_COLORS     = ["#e3b341", "#58a6ff", "#a8b5bf", "#3fb950", "#f0883e", "#ffa657", "#79c0ff", "#a371f7"];
+
+new Chart(document.getElementById('heroChart'), {
+  type: 'line',
+  data: {
+    labels: PORTFOLIO_LABELS,
+    datasets: [
+      {
+        label: 'Cost Basis',
+        data: COST_INDEX,
+        borderColor: '#58a6ff',
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointRadius: 2,
+        tension: 0.3,
+        fill: false
+      },
+      {
+        label: 'Market Value',
+        data: VALUE_INDEX,
+        borderColor: '#3fb950',
+        borderWidth: 2,
+        borderDash: [5, 3],
+        pointRadius: 2,
+        tension: 0.3,
+        fill: {target: '-1', above: 'rgba(63,185,80,0.10)', below: 'rgba(248,81,73,0.12)'}
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#c9d1d9', font: { size: 12 } } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1)
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { color: '#8b949e', maxRotation: 45 }, grid: { color: '#30363d' } },
+      y: { ticks: { color: '#8b949e', callback: v => v.toFixed(0) }, grid: { color: '#30363d' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('allocChart'), {
+  type: 'bar',
+  data: {
+    labels: ALLOC_LABELS,
+    datasets: [{
+      data: ALLOC_PCTS,
+      backgroundColor: ALLOC_COLORS,
+      borderRadius: 3,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.parsed.x.toFixed(1) + '%' } }
+    },
+    scales: {
+      x: { ticks: { color: '#8b949e', callback: v => v + '%' }, grid: { color: '#30363d' } },
+      y: { ticks: { color: '#c9d1d9' }, grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
